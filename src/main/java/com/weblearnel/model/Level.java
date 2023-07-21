@@ -1,10 +1,15 @@
 package com.weblearnel.model;
 
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,7 +30,7 @@ public class Level {
     @Column(name = "level_id")
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "name_lv")
     private String name;
 
     @Column(name = "description")
@@ -39,4 +44,8 @@ public class Level {
 
     // @OneToMany
     // private ArrayList<Question> questions;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "level")
+    private Set<Question> questions;
 }
